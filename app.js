@@ -15,10 +15,11 @@ app.get("/", (req, res) => {
 app.use("/api/contacts", contactsRouter);
 //
 app.use((req, res, next) => {
-    // Kiem tra url co trung voi url co an khong
+    // Kiem tra url co trung voi url co san khong
     if(!validPaths.includes(req.url))///
         return next(new ApiError(404, "Resource not found"));
 });
+
 app.use((err, req, res, next) => {
     return res.json({
         status: err.statusCode || 500,
